@@ -1,0 +1,45 @@
+<resources>
+
+    <!-- Base application theme. -->
+    <style name="AppTheme" parent="android:Theme.Holo.Light.DarkActionBar">
+        <!-- Customize your theme here. -->
+    </style>
+
+    <style name="m_m">
+        <item name="android:layout_width">match_parent</item>
+        <item name="android:layout_height">match_parent</item>
+    </style>
+
+    <style name="m_w">
+        <item name="android:layout_width">match_parent</item>
+        <item name="android:layout_height">wrap_content</item>
+    </style>
+
+    <style name="w_m">
+        <item name="android:layout_width">wrap_content</item>
+        <item name="android:layout_height">match_parent</item>
+    </style>
+
+    <style name="w_w">
+        <item name="android:layout_width">wrap_content</item>
+        <item name="android:layout_height">wrap_content</item>
+    </style>
+
+
+    <!--mainactivity的样式-->
+    <style name="myTheme" parent="@android:style/Theme.Holo.Light">
+        <item name="android:actionBarStyle">@style/myActionBar</item> <!--设置ActionBarStyle-->
+    </style>
+    <!--actionbar标题样式-->
+    <style name="actionBarTitle">
+        <item name="android:textColor">#FFFFFF</item>
+        <item name="android:textSize">20sp</item>
+    </style>
+    <!--actionbar样式-->
+    <style name="myActionBar" parent="@android:style/Widget.Holo.Light.ActionBar">
+        <item name="android:background">#54BA42</item>
+        <item name="android:backgroundStacked">#54BA42</item>
+        <item name="android:displayOptions">showTitle</item><!--这样设置只显示title不显示logo-->
+        <item name="android:titleTextStyle">@style/actionBarTitle</item> <!--设置titleTextStyle-->
+    </style>
+</resources>
