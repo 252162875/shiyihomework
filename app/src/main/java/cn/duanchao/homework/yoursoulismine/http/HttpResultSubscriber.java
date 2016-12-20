@@ -109,6 +109,7 @@ public abstract class HttpResultSubscriber<T> extends Subscriber<HttpResult<T>> 
 
     @Override
     public void onError(Throwable e) {
+        dismissProgressDialog();
         Log.e("HttpResultSubscriber", e.getMessage());
         e.printStackTrace();
         //在这里做全局的错误处理
@@ -116,6 +117,7 @@ public abstract class HttpResultSubscriber<T> extends Subscriber<HttpResult<T>> 
 
         }
         UiUtils.showToast(e.getMessage());
+        requestFinish();
     }
 
     @Override
@@ -124,7 +126,9 @@ public abstract class HttpResultSubscriber<T> extends Subscriber<HttpResult<T>> 
             onSuccess(t);
         else
             UiUtils.showToast("title is empty!");
+        requestFinish();
     }
 
     public abstract void onSuccess(HttpResult<T> t);
+    public abstract void requestFinish();
 }

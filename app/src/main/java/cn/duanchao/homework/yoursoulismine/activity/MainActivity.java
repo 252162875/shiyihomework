@@ -39,9 +39,13 @@ public class MainActivity extends BaseActivity implements SwipeRefreshLayout.OnR
 
             @Override
             public void onSuccess(HttpResult<ThoughtWorksBean> t) {
-                refreshlayout.setRefreshing(false);
                 ThoughtWorksBean thoughtworksbean = (ThoughtWorksBean) t;
                 showTheResult(thoughtworksbean);
+            }
+
+            @Override
+            public void requestFinish() {
+                refreshlayout.setRefreshing(false);
             }
         };
     }
