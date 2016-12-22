@@ -15,10 +15,8 @@ import rx.Subscriber;
 
 /**
  * 请求结果的处理
- *
- * @param <T>
  */
-public abstract class HttpResultSubscriber<T> extends Subscriber<HttpResult<T>> {
+public abstract class HttpResultSubscriber extends Subscriber<HttpResult> {
     //    是否能取消请求
     private boolean cancel;
     //    弱引用防止内存泄露
@@ -36,7 +34,9 @@ public abstract class HttpResultSubscriber<T> extends Subscriber<HttpResult<T>> 
     public HttpResultSubscriber(Context context, boolean cancel) {
         this.mActivity = new WeakReference<>(context);
         this.cancel = cancel;
-        initProgressDialog();
+        if (cancel) {
+            initProgressDialog();
+        }
     }
 
 
@@ -74,7 +74,7 @@ public abstract class HttpResultSubscriber<T> extends Subscriber<HttpResult<T>> 
      */
     private void showProgressDialog() {
         Context context = mActivity.get();
-        if (pd == null || context == null) return;
+        if (pd == null || context == null || !cancel) return;
         if (!pd.isShowing()) {
             pd.show();
         }
@@ -121,7 +121,7 @@ public abstract class HttpResultSubscriber<T> extends Subscriber<HttpResult<T>> 
     }
 
     @Override
-    public void onNext(HttpResult<T> t) {
+    public void onNext(HttpResult t) {
         if (!TextUtils.isEmpty(t.title))
             onSuccess(t);
         else
@@ -129,6 +129,7 @@ public abstract class HttpResultSubscriber<T> extends Subscriber<HttpResult<T>> 
         requestFinish();
     }
 
-    public abstract void onSuccess(HttpResult<T> t);
+    public abstract void onSuccess(HttpResult t);
+
     public abstract void requestFinish();
 }

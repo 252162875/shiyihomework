@@ -4,6 +4,8 @@ import android.app.Application;
 import android.content.Context;
 import android.os.Handler;
 
+import com.facebook.drawee.backends.pipeline.Fresco;
+
 public class MyApplication extends Application {
     private static Context context;
     private static Handler handler;
@@ -12,6 +14,8 @@ public class MyApplication extends Application {
     @Override
     public void onCreate() {
         super.onCreate();
+        //初始化Fresco
+        Fresco.initialize(this);
         // 初始化context对象，context对象使用的非常多
         context = getApplicationContext();
         // 获取主线程的handler 相当于获取主线程的消息队列
